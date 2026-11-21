@@ -367,6 +367,269 @@ export const METHODS = [
     shortcut: t`\text{Monopoly, linear demand, constant MC:}\quad p_t - p_0 = \tfrac{t}{2}\ \Rightarrow\ \text{50/50 split}`,
     traps: ['Use the after-tax quantity for revenue, not the original quantity.'],
   },
+
+  /* ---------------------------------------------------------------- Income and substitution effects */
+  {
+    id: 'slutsky-decomposition',
+    title: 'Slutsky decomposition of a price change',
+    when: t`A price changes and the question asks for the substitution and income effects using the **Slutsky** approach: compensated income makes the **original bundle just affordable**.`,
+    setup: t`Old prices $(p_1, p_2)$, new price $p_1'$, income $m$.`,
+    steps: [
+      { title: 'Original bundle', how: 'Solve the consumer problem at the old prices and old income.', math: t`A = (x_1, x_2) \text{ at } (p_1, p_2, m)` },
+      { title: 'New bundle', how: 'Solve again at the new price, with the same income.', math: t`C = (x_1', x_2') \text{ at } (p_1', p_2, m)` },
+      { title: 'Compensated income', how: 'The income that buys the **original** bundle at the **new** prices.', math: t`m' = p_1'\,x_1 + p_2\,x_2` },
+      { title: 'Compensated bundle', how: 'Solve the consumer problem at the new prices with income $m\'$.', math: t`B = (x_1^s, x_2^s) \text{ at } (p_1', p_2, m')` },
+      { title: 'Substitution effect: A → B', how: 'The move caused by the change in relative prices alone.', math: t`SE = x_1^s - x_1` },
+      { title: 'Income effect: B → C', how: 'The move caused by the loss of purchasing power.', math: t`IE = x_1' - x_1^s` },
+      { title: 'Check and classify', how: 'The effects add up to the total. For a price rise: IE < 0 means normal, IE > 0 means inferior.', math: t`SE + IE = x_1' - x_1` },
+    ],
+    check: 'For a price rise, the own-good substitution effect is always ≤ 0.',
+    traps: ['Use the compensated income only for the middle bundle B. The new bundle C uses the original income.', 'For the other good, the substitution effect is positive if it is now relatively cheaper.'],
+  },
+  {
+    id: 'hicks-decomposition',
+    title: 'Hicks decomposition of a price change',
+    when: t`The question asks for the **Hicksian** effects: compensate so the consumer reaches the **original utility** at the new prices.`,
+    steps: [
+      { title: 'Original bundle and utility', how: t`Solve at the old prices, then compute $u_0$.`, math: t`u_0 = u(x_1, x_2)` },
+      { title: 'Tangency at the new prices', how: 'The Hicks bundle is where an indifference curve is tangent to a budget line with the new slope.', math: t`MRS = \frac{p_1'}{p_2} \;\Rightarrow\; x_2 \text{ in terms of } x_1` },
+      { title: 'Stay on the original indifference curve', how: t`Substitute into $u(x_1, x_2) = u_0$ and solve.`, math: t`u(x_1^H, x_2^H) = u_0` },
+      { title: 'Cost of the Hicks bundle (if asked)', how: 'The minimum income to reach the old utility at new prices.', math: t`m^H = p_1'\,x_1^H + p_2\,x_2^H` },
+      { title: 'Effects', how: 'Substitution: old bundle → Hicks bundle. Income: Hicks bundle → new bundle.', math: [t`SE^H = x_1^H - x_1`, t`IE^H = x_1' - x_1^H`] },
+    ],
+    check: t`$m^H \le m'$ (Slutsky income), so $|SE^H| \ge |SE^{\text{Slutsky}}|$.`,
+  },
+  {
+    id: 'explain-slutsky-vs-hicks',
+    title: 'Explaining Slutsky vs Hicks compensation',
+    when: 'An "explain why" question comparing the two substitution effects.',
+    steps: [
+      { title: 'Say what each holds constant', how: '**Slutsky** holds **purchasing power** constant (the old bundle is just affordable). **Hicks** holds **utility** constant (the old indifference curve is just reachable).' },
+      { title: 'Compare the compensation', how: 'With the old bundle affordable, the consumer can re-optimise and reach a **higher** indifference curve. So Slutsky gives **more** income than is needed to restore the old utility.' },
+      { title: 'Link to the size of the effect', how: 'Extra income pulls demand back towards the original level (for a normal good), so the Slutsky substitution effect is **smaller in size** than the Hicksian one.' },
+      { title: 'Quote the numbers', how: 'State both compensated incomes and both substitution effects from the question.' },
+    ],
+  },
+  {
+    id: 'perfect-substitutes',
+    title: 'Perfect substitutes: optimal bundle',
+    when: t`Utility is **linear**: $u = a x_1 + b x_2$. The consumer usually buys only one good (a corner solution).`,
+    steps: [
+      { title: 'Compare utility per euro', how: 'Which good gives more utility per unit of money?', math: t`\frac{a}{p_1} \;\text{ vs }\; \frac{b}{p_2}` },
+      { title: 'Spend all income on the better-value good', how: 'If $a/p_1 > b/p_2$, buy only good 1, and the other way round otherwise.', math: t`x_1 = \frac{m}{p_1},\; x_2 = 0 \quad\text{or}\quad x_1 = 0,\; x_2 = \frac{m}{p_2}` },
+      { title: 'Tie', how: 'If they are equal, any bundle on the budget line is optimal.', math: t`\frac{a}{p_1} = \frac{b}{p_2}` },
+    ],
+    traps: ['Do not use MRS = price ratio: the MRS is constant, so there is no tangency.'],
+  },
+  {
+    id: 'explain-se-extremes',
+    title: 'Explaining the substitution effect for complements and substitutes',
+    when: 'Explain why the substitution effect is zero for perfect complements but is the whole change for perfect substitutes.',
+    steps: [
+      { title: 'Perfect complements: L-shaped indifference curves', how: 'The consumer always wants the goods in a fixed ratio. Changing relative prices gives no reason to change the mix, so after compensation the old bundle is still optimal: **SE = 0, and the whole change is an income effect.**' },
+      { title: 'Perfect substitutes: straight-line indifference curves', how: 'The consumer only cares which good is cheaper per unit of utility. Once good 1 becomes relatively dearer, they switch completely: **a pure substitution effect.**' },
+      { title: 'Why the income effect is zero for substitutes here', how: 'Extra income would be spent on the now-cheaper good, so $x_1$ is zero with or without the compensation.' },
+      { title: 'General lesson', how: 'The more curved the indifference curves (less substitutable), the smaller the substitution effect.' },
+    ],
+  },
+  {
+    id: 'classify-good',
+    title: 'Classifying a good from its substitution and income effects',
+    when: 'Given SE and IE for an own-price change, find the total effect and the type of good.',
+    steps: [
+      { title: 'Total effect', how: 'Add the two effects.', math: t`\Delta x_1 = SE + IE` },
+      { title: 'Normal or inferior?', how: 'Look at the income effect for a price **rise** (real income falls).', math: t`IE < 0 \Rightarrow \text{normal}, \qquad IE > 0 \Rightarrow \text{inferior}` },
+      { title: 'Giffen?', how: 'Giffen means demand **rises** when the price rises, i.e. the positive income effect outweighs the substitution effect.', math: t`\Delta x_1 > 0 \text{ when } p_1 \uparrow \;\Rightarrow\; \text{Giffen}` },
+    ],
+    traps: ['For a price **fall** the signs of the effects flip: be careful which direction the question uses.'],
+  },
+  {
+    id: 'explain-slutsky-equation',
+    title: 'Writing and explaining the Slutsky equation',
+    when: 'Write down the Slutsky equation, or explain Giffen goods or the sign of the substitution effect.',
+    steps: [
+      { title: 'Write the equation', how: 'Total = substitution + income.', math: t`\frac{\partial x_1}{\partial p_1} = \frac{\partial x_1^s}{\partial p_1} - x_1\frac{\partial x_1}{\partial m}` },
+      { title: 'Explain the substitution term', how: 'The response to the price change with purchasing power held constant. It is **always ≤ 0** (revealed preference: the consumer moves away from the good that became dearer).' },
+      { title: 'Explain the income term', how: 'A price rise makes the consumer poorer by roughly $x_1\,\Delta p_1$. The effect on demand depends on how much of the good they buy ($x_1$) and how demand responds to income ($\\partial x_1 / \\partial m$).' },
+      { title: 'Apply to normal, inferior and Giffen goods', how: 'Normal: both terms are negative, so demand falls (never Giffen). Inferior: the income term is positive, and Giffen only if it is larger than the substitution term (rare, because the good must be a large share of the budget).' },
+    ],
+  },
+
+  /* ---------------------------------------------------------------- Oligopoly explanations */
+  {
+    id: 'explain-cournot',
+    title: 'Describing the Cournot model',
+    when: 'An "explain in words" question about Cournot competition or why best responses slope down.',
+    steps: [
+      { title: 'Set-up', how: "Firms choose **quantities** simultaneously; the market price adjusts to clear demand." },
+      { title: 'What each firm takes as given', how: "Each firm maximises its profit taking the **rival's output as given** (fixed)." },
+      { title: 'Why best responses slope down', how: "More rival output → lower price → less **residual demand** left for the firm → lower marginal revenue → the firm's profit-maximising output falls." },
+      { title: 'Equilibrium', how: "A Cournot-Nash equilibrium is where each firm's output is a best response to the other's: the best responses cross." },
+    ],
+  },
+  {
+    id: 'explain-cournot-between',
+    title: 'Why the Cournot price lies between competition and monopoly',
+    when: 'Explain why Cournot output and price sit between the competitive and monopoly outcomes.',
+    steps: [
+      { title: 'Why the price is above MC', how: "A Cournot firm knows that selling more lowers the price on **all its own units**, so it holds back output: price > MC." },
+      { title: 'Why the price is below monopoly', how: "It ignores the **damage its extra output does to the rival's revenue**. A monopolist or cartel would take that into account and produce less." },
+      { title: 'Conclude', how: 'So monopoly output < Cournot output < competitive output, and the Cournot price lies strictly between the two.' },
+      { title: 'Optional: the formula', how: 'With linear demand and n firms:', math: t`p^* = \frac{a + nc}{n+1}: \quad n = 1 \text{ gives the monopoly price},\; n \to \infty \text{ gives } c` },
+    ],
+  },
+  {
+    id: 'explain-bertrand',
+    title: 'Bertrand competition (identical products)',
+    when: 'Firms choose **prices** simultaneously for an identical product.',
+    steps: [
+      { title: 'Rule of the market', how: 'Consumers buy from the cheapest firm and split equally if prices tie.' },
+      { title: 'Undercutting argument', how: 'At any common price above MC, either firm can cut its price slightly and win the **whole** market, nearly doubling its profit. So no price above MC can be an equilibrium.' },
+      { title: 'Equilibrium', how: 'Both firms price at marginal cost and earn zero profit.', math: t`p_1^* = p_2^* = MC, \qquad \pi_1 = \pi_2 = 0` },
+      { title: 'Why nobody deviates', how: 'Pricing above MC sells nothing. Pricing below MC wins the market but loses money on every unit.' },
+      { title: 'Contrast with Cournot', how: 'In Cournot, output is committed, so a firm cannot steal the whole market by cutting price. That softens competition, and the price stays above MC.' },
+    ],
+  },
+  {
+    id: 'explain-collusion',
+    title: 'Why collusion is hard to sustain (and what helps)',
+    when: 'Explain why collusion fails in a one-shot game and what makes it easier in a repeated game.',
+    steps: [
+      { title: 'One-shot game', how: 'Given the others stick to the collusive output, each firm gains by producing more (cheating). So collusion is **not a Nash equilibrium**: a prisoners\' dilemma.' },
+      { title: 'Repeated game', how: 'Firms can threaten **punishment**, e.g. reverting to Cournot (or a price war) forever after any deviation (a trigger strategy).' },
+      { title: 'Condition', how: 'Collusion is sustained if the value of future cooperation outweighs the one-time gain from cheating.', math: t`\text{one-off gain from cheating} < \text{present value of future losses from punishment}` },
+      { title: 'What helps', how: 'Patient firms (high discount factor), easy detection of cheating, few firms, frequent interaction and stable demand.' },
+    ],
+  },
+  {
+    id: 'bertrand-equilibrium',
+    title: 'Bertrand equilibrium with equal costs (calculation)',
+    when: 'Identical product, simultaneous prices, equal constant MC. Find prices, output and profits.',
+    steps: [
+      { title: 'Price equals marginal cost', how: 'From the undercutting argument.', math: t`p_1 = p_2 = c` },
+      { title: 'Market output from demand', how: t`Substitute $p = c$ into demand.`, math: t`p = a - bQ = c \;\Rightarrow\; Q = \frac{a - c}{b}` },
+      { title: 'Split equally', how: 'Equal prices, so customers split evenly.', math: t`q_1 = q_2 = \frac{Q}{2}` },
+      { title: 'Profits', how: 'Zero margin on every unit.', math: t`\pi_i = (c - c)\,q_i = 0` },
+      { title: 'Show no one wants to deviate', how: 'Raising the price sells nothing; cutting it loses money. List both.' },
+    ],
+  },
+  {
+    id: 'bertrand-asymmetric',
+    title: 'Bertrand with different costs',
+    when: t`Simultaneous prices for an identical product, with $c_1 < c_2$.`,
+    steps: [
+      { title: 'Who wins the market', how: 'The low-cost firm can price just below the rival\'s cost. The rival cannot follow without selling below its own cost.', math: t`p^* \approx c_2 \;(\text{just below}), \quad \text{Firm 1 serves the whole market}` },
+      { title: 'Check the monopoly price', how: "If Firm 1's own monopoly price is **below** $c_2$, it simply charges that instead.", math: t`p^* = \min\{c_2,\ p^M(c_1)\}` },
+      { title: 'Quantity and profit', how: 'Read quantity off demand at that price.', math: [t`Q = D(p^*)`, t`\pi_1 = (p^* - c_1)\,Q, \qquad \pi_2 = 0`] },
+    ],
+    traps: ['Firm 1 does not charge its monopoly price if that price is above the rival\'s cost: Firm 2 would undercut it.'],
+  },
+  {
+    id: 'compare-market-structures',
+    title: 'Comparing Bertrand, Cournot and monopoly',
+    when: 'Same demand and cost; compare the outcomes of different market structures.',
+    setup: t`Demand $p = a - bQ$, constant MC $c$, two firms.`,
+    steps: [
+      { title: 'Bertrand', how: 'Price equals MC.', math: t`p = c, \quad Q = \frac{a - c}{b}, \quad \pi = 0` },
+      { title: 'Cournot', how: 'Symmetric best responses.', math: t`q_i = \frac{a - c}{3b}, \quad p = \frac{a + 2c}{3}, \quad \pi_i = b\,q_i^2` },
+      { title: 'Monopoly', how: 'MR = MC.', math: t`Q = \frac{a - c}{2b}, \quad p = \frac{a + c}{2}, \quad \pi = \frac{(a - c)^2}{4b}` },
+      { title: 'Rank them', how: 'Price: Bertrand < Cournot < monopoly. Output: the reverse. Profit: Bertrand (0) < Cournot < monopoly.' },
+    ],
+  },
+  {
+    id: 'free-entry',
+    title: 'Free entry with a fixed cost (Cournot)',
+    when: 'Each firm pays a fixed cost F; firms enter as long as profit net of F is non-negative.',
+    steps: [
+      { title: 'Profit per firm as a function of n', how: 'From the n-firm Cournot method (before the fixed cost).', math: t`\pi(n) = b\left(\frac{a - c}{(n+1)b}\right)^2` },
+      { title: 'Entry condition', how: 'Net profit must be non-negative.', math: t`\pi(n) - F \ge 0` },
+      { title: 'Solve for n', how: 'Take square roots, then rearrange.', math: t`\frac{a - c}{(n+1)\sqrt{b}} \ge \sqrt{F} \;\Rightarrow\; n + 1 \le \frac{a - c}{\sqrt{bF}}` },
+      { title: 'Take the largest whole number', how: 'Check that one more firm would make a loss.', math: t`n^* = \Big\lfloor \tfrac{a - c}{\sqrt{bF}} \Big\rfloor - 1` },
+    ],
+    traps: ['Round down, and confirm with n* + 1 that the next entrant would lose money.'],
+  },
+  {
+    id: 'explain-many-firms',
+    title: 'Market structure and competition as n grows',
+    when: 'What happens to price as the number of Cournot firms becomes very large?',
+    steps: [
+      { title: 'Use the n-firm formulas', how: 'Output per firm and price as functions of n.', math: t`q = \frac{a - c}{(n+1)b} \to 0, \qquad p = \frac{a + nc}{n+1} \to c` },
+      { title: 'Interpret', how: 'Each firm becomes too small to affect the price, so the outcome approaches **perfect competition** (price = MC).' },
+      { title: 'Link structure to competition', how: 'n = 1 gives monopoly. As n rises, output rises and the price falls towards MC. More firms means more competition.' },
+      { title: 'Add the real-world limit', how: 'With fixed costs, entry stops at a finite n, so the price stays above MC.' },
+    ],
+  },
+
+  /* ---------------------------------------------------------------- Regulation */
+  {
+    id: 'natural-monopoly',
+    title: 'Testing for a natural monopoly',
+    when: 'Increasing returns (or a fixed cost) and "would p = MC cover costs?" or "is one firm cheaper than two?"',
+    steps: [
+      { title: 'Compare MC with AC', how: 'If MC < AC, average cost is falling.', math: t`MC(q) < AC(q)` },
+      { title: 'Marginal-cost pricing', how: 'At p = MC, revenue per unit is below average cost, so the firm makes a loss.', math: t`\pi = (p - AC)\,q = (MC - AC)\,q < 0` },
+      { title: 'One firm vs two', how: 'Cost of producing the total in one firm vs splitting it.', math: t`c(q) \;\text{ vs }\; c(q/2) + c(q/2)` },
+      { title: 'Conclude', how: 'If one firm is cheaper, it is a **natural monopoly**: competition would waste resources, so the market is usually regulated or subsidised.' },
+    ],
+  },
+  {
+    id: 'marginal-cost-pricing',
+    title: 'Efficient output (p = MC), profit there, and regulation',
+    when: 'The question asks for the efficient output, the firm\'s profit at p = MC, and why the regulator can\'t just impose it.',
+    steps: [
+      { title: 'Efficient output', how: 'Set price equal to marginal cost.', math: t`a - bq^C = MC \;\Rightarrow\; q^C` },
+      { title: 'Profit at the efficient output', how: 'Revenue minus total cost, including the fixed cost.', math: t`\pi^C = (MC - MC)\,q^C - F = -F \quad(\text{constant MC})` },
+      { title: 'Deadweight loss of monopoly', how: 'The triangle from the monopoly to the efficient output.', math: t`DWL = \tfrac12\,(q^C - q^M)(p^M - MC)` },
+      { title: 'Explain', how: 'At p = MC the firm loses its fixed cost, so it would shut down unless subsidised. Forcing p = MC is not sustainable without a subsidy (or a two-part tariff).' },
+    ],
+  },
+  {
+    id: 'price-cap',
+    title: 'Monopoly under a price cap',
+    when: t`A regulator sets a maximum price $\bar p$ below the monopoly price.`,
+    steps: [
+      { title: 'Check the cap is above MC', how: 'If so, every extra unit sold at the cap is profitable.', math: t`MC \le \bar p < p^M` },
+      { title: 'Output at the cap', how: 'The firm sells everything demanded at the capped price.', math: t`a - bq = \bar p \;\Rightarrow\; q = \frac{a - \bar p}{b}` },
+      { title: 'Profit', how: 'Margin times quantity, minus any fixed cost.', math: t`\pi = (\bar p - MC)\,q - F` },
+      { title: 'New deadweight loss', how: 'Triangle between the new output and the efficient output.', math: t`DWL = \tfrac12\,(q^C - q)(\bar p - MC)` },
+    ],
+    check: 'Output rises and the price falls compared with monopoly, so the deadweight loss shrinks.',
+  },
+  {
+    id: 'surplus-comparison',
+    title: 'Consumer surplus and total surplus before and after a policy',
+    when: 'Compare CS, profit and total surplus across two outcomes (e.g. before and after a price cap).',
+    steps: [
+      { title: 'Consumer surplus in each case', how: 'Triangle under demand above the price.', math: t`CS = \tfrac12\,q\,(a - p)` },
+      { title: 'Profit in each case', how: 'Use the profits already found (net of fixed cost).', math: t`\pi = (p - MC)\,q - F` },
+      { title: 'Total surplus', how: 'Add them.', math: t`TS = CS + \pi` },
+      { title: 'Compare and check', how: 'The rise in total surplus should equal the fall in deadweight loss.', math: t`\Delta TS = -\Delta DWL` },
+    ],
+  },
+
+  /* ---------------------------------------------------------------- Game theory */
+  {
+    id: 'iesds',
+    title: 'Iterated elimination of strictly dominated strategies',
+    when: 'A payoff table (often 3×3) asks you to use iterated elimination.',
+    steps: [
+      { title: "Look for a strictly dominated strategy for either player", how: "Compare two of a player's strategies against **every** remaining strategy of the rival. Strictly worse every time means dominated." },
+      { title: 'Delete it and redraw the table', how: 'Write the comparison you used, e.g. "C beats R: 3 > 1, 4 > 0, 2 > 1".' },
+      { title: 'Repeat with the smaller table', how: 'A strategy that was not dominated before can become dominated once rival strategies are removed.' },
+      { title: 'Stop when nothing is dominated', how: 'If one cell remains, that is the (unique) Nash equilibrium.' },
+    ],
+    traps: ['A tie in any column means the strategy is **not** strictly dominated.', 'Only compare against the rival\'s strategies that are still in the table.'],
+  },
+  {
+    id: 'explain-dominated-not-ne',
+    title: 'Why a strictly dominated strategy is never in a Nash equilibrium',
+    when: 'An "explain" question on dominance and Nash equilibrium.',
+    steps: [
+      { title: 'Definition', how: 'A strictly dominated strategy is beaten by another strategy **whatever the rival does**.' },
+      { title: 'Apply to the equilibrium', how: "That includes the strategy the rival plays in any candidate equilibrium, so the player would gain by switching." },
+      { title: 'Conclude', how: 'A dominated strategy is never a best response, so it cannot be part of a Nash equilibrium. This is why IESDS never removes a Nash equilibrium.' },
+    ],
+  },
 ];
 
 export const methodById = new Map(METHODS.map((m) => [m.id, m]));
