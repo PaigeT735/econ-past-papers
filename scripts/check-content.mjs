@@ -118,7 +118,13 @@ for (const paper of PAPERS) {
       checkRich(part.approach, `${w}.approach`);
       checkRich(part.result, `${w}.result`);
       (part.given ?? []).forEach(([k, v], i) => { checkRich(k, `${w}.given[${i}]`); checkRich(v, `${w}.given[${i}]`); });
-      (part.working ?? []).forEach((x, i) => checkRich(x, `${w}.working[${i}]`));
+      (part.working ?? []).forEach((x, i) => {
+        if (typeof x === 'string') return checkRich(x, `${w}.working[${i}]`);
+        checkRich(x.title, `${w}.working[${i}].title`);
+        checkRich(x.why, `${w}.working[${i}].why`);
+        checkRich(x.note, `${w}.working[${i}].note`);
+        [].concat(x.math ?? []).forEach((m) => render(m, true, `${w}.working[${i}].math`));
+      });
       (part.tips ?? []).forEach((x, i) => checkRich(x, `${w}.tips[${i}]`));
       (part.answer ?? []).forEach((b, i) => {
         [].concat(b.paras ?? []).forEach((x) => checkRich(x, `${w}.answer[${i}].paras`));

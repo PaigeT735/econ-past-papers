@@ -42,7 +42,7 @@ function build() {
             title: normalise(`question ${part.label} q${part.label} ${part.type === 'calc' ? 'calculation' : 'essay'}`),
             tags: normalise(topics + ' ' + paper.title + ' ' + paper.short),
             summary: normalise(part.prompt),
-            formula: normalise(flat(part.working)),
+            formula: normalise((part.working ?? []).map((x) => (typeof x === 'string' ? x : [x.title, x.why, flat(x.math), x.note].join(' '))).join(' ')),
             clues: normalise(flat(part.tips) + ' ' + (part.approach ?? '')),
             body: normalise((part.answer ?? []).map(blockText).join(' ')),
           },

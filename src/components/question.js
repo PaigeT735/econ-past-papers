@@ -42,11 +42,26 @@ function givenBlock(given) {
   return `<section class="block block--given">${label('What you are given')}<dl class="vars">${rows}</dl></section>`;
 }
 
+/**
+ * Step-by-step working. A step is either a rich string, or
+ * { title, why, math, note }: a short step name, one line explaining why,
+ * the maths on its own line (LaTeX, display mode), and an optional note.
+ */
+function workingStep(step) {
+  if (typeof step === 'string') return `<li><div>${rich(step)}</div></li>`;
+  return `<li><div class="wstep">
+      ${step.title ? `<div class="wstep__title">${rich(step.title)}</div>` : ''}
+      ${step.why ? `<div class="wstep__why">${rich(step.why)}</div>` : ''}
+      ${[].concat(step.math ?? []).map((m) => `<div class="wstep__math">${tex(m, true)}</div>`).join('')}
+      ${step.note ? `<div class="wstep__note">${rich(step.note)}</div>` : ''}
+    </div></li>`;
+}
+
 function workingBlock(steps, result) {
   if (!steps?.length) return '';
   return `<section class="block block--example">${label('Step-by-step working')}
     <div class="example">
-      <ol class="example__steps">${steps.map((s) => `<li><div>${rich(s)}</div></li>`).join('')}</ol>
+      <ol class="example__steps">${steps.map(workingStep).join('')}</ol>
       ${result ? `<div class="example__answer"><span class="example__answer-label">Answer</span><span>${rich(result)}</span></div>` : ''}
     </div>
   </section>`;
