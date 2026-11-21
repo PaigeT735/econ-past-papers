@@ -14,6 +14,7 @@ globalThis.window = { katex };
 const { segments } = await import('../src/lib/rich.js');
 const { PAPERS, FORMULA_SHEET } = await import('../src/content/index.js');
 const { topicById } = await import('../src/content/topics.js');
+const { METHODS, methodById } = await import('../src/content/methods.js');
 const SECTIONS = [FORMULA_SHEET];
 
 const errors = [];
@@ -134,8 +135,31 @@ for (const paper of PAPERS) {
       });
       (part.topics ?? []).forEach((tp) => { if (!topicById.has(tp)) errors.push(`${w}: unknown topic "${tp}" (add it to topics.js)`); });
       (part.formulas ?? []).forEach((f) => { if (!formulaIds.has(f)) errors.push(`${w}: unknown formula card "${f}"`); });
+      const methods = [].concat(part.method ?? []);
+      if (!methods.length) errors.push(`${w}: missing method (add a standard method id from content/methods.js)`);
+      methods.forEach((m) => { if (!methodById.has(m)) errors.push(`${w}: unknown method "${m}" (add it to content/methods.js)`); });
     }
   }
+}
+
+// ---- Standard methods ----
+const methodIds = new Set();
+for (const m of METHODS) {
+  const w = `method:${m.id}`;
+  if (methodIds.has(m.id)) errors.push(`Duplicate method id ${m.id}`);
+  methodIds.add(m.id);
+  for (const key of ['id', 'title', 'when', 'steps']) if (m[key] == null) errors.push(`${w}: missing ${key}`);
+  checkRich(m.title, `${w}.title`);
+  checkRich(m.when, `${w}.when`);
+  checkRich(m.setup, `${w}.setup`);
+  checkRich(m.check, `${w}.check`);
+  if (m.shortcut) render(m.shortcut, true, `${w}.shortcut`);
+  (m.traps ?? []).forEach((x, i) => checkRich(x, `${w}.traps[${i}]`));
+  (m.steps ?? []).forEach((st, i) => {
+    checkRich(st.title, `${w}.steps[${i}].title`);
+    checkRich(st.how, `${w}.steps[${i}].how`);
+    [].concat(st.math ?? []).forEach((x) => render(x, true, `${w}.steps[${i}].math`));
+  });
 }
 
 for (const [from, to] of allRelated) {
@@ -148,4 +172,4 @@ if (errors.length) {
   errors.forEach((e) => console.error('  • ' + e));
   process.exit(1);
 }
-console.log(`✓ ${PAPERS.length} paper(s), ${parts} question parts, ${cards} formula cards, ${rendered} maths expressions rendered without errors. All links resolve.`);
+console.log(`✓ ${PAPERS.length} paper(s), ${parts} question parts, ${cards} formula cards, ${METHODS.length} standard methods, ${rendered} maths expressions rendered without errors. All links resolve.`);

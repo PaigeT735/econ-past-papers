@@ -5,6 +5,7 @@
  */
 import { PAPERS, FORMULA_SHEET, cardCode } from '../content/index.js';
 import { topicById } from '../content/topics.js';
+import { methodById } from '../content/methods.js';
 
 /** Turn LaTeX / rich text into lowercase searchable words. */
 export function normalise(str) {
@@ -43,7 +44,7 @@ function build() {
             tags: normalise(topics + ' ' + paper.title + ' ' + paper.short),
             summary: normalise(part.prompt),
             formula: normalise((part.working ?? []).map((x) => (typeof x === 'string' ? x : [x.title, x.why, flat(x.math), x.note].join(' '))).join(' ')),
-            clues: normalise(flat(part.tips) + ' ' + (part.approach ?? '')),
+            clues: normalise(flat(part.tips) + ' ' + (part.approach ?? '') + ' ' + [].concat(part.method ?? []).map((id) => methodById.get(id)?.title ?? '').join(' ')),
             body: normalise((part.answer ?? []).map(blockText).join(' ')),
           },
         });

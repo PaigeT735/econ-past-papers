@@ -21,6 +21,7 @@ export default {
       parts: [
         {
           id: 'pf-q1',
+          method: 'perfect-complements',
           label: '1',
           title: 'Perfect complements',
           type: 'calc',
@@ -57,6 +58,7 @@ export default {
       parts: [
         {
           id: 'pf-q2',
+          method: 'cobb-douglas-demand',
           label: '2',
           title: 'Cobb-Douglas utility',
           type: 'calc',
@@ -93,6 +95,7 @@ export default {
       parts: [
         {
           id: 'pf-q3',
+          method: 'explain-nash',
           label: '3',
           title: 'Nash equilibrium',
           type: 'essay',
@@ -149,6 +152,7 @@ export default {
       parts: [
         {
           id: 'pf-q4',
+          method: 'conditional-demands',
           label: '4',
           title: 'Conditional input demands',
           type: 'calc',
@@ -184,6 +188,7 @@ export default {
       parts: [
         {
           id: 'pf-q5',
+          method: 'cost-function',
           label: '5',
           title: 'Cost and marginal cost',
           type: 'calc',
@@ -218,6 +223,7 @@ export default {
       parts: [
         {
           id: 'pf-q6',
+          method: 'monopoly-optimum',
           label: '6',
           title: 'Monopoly output, price and profit',
           type: 'calc',
@@ -257,6 +263,7 @@ export default {
       parts: [
         {
           id: 'pf-q7',
+          method: ['monopoly-optimum', 'monopoly-dwl'],
           label: '7',
           title: 'Monopoly vs competition and deadweight loss',
           type: 'calc',
@@ -298,6 +305,7 @@ export default {
       parts: [
         {
           id: 'pf-q8a',
+          method: 'conditional-demands',
           label: '8(a)',
           title: 'Conditional input demands',
           type: 'calc',
@@ -316,6 +324,7 @@ export default {
         },
         {
           id: 'pf-q8b',
+          method: 'cost-function',
           label: '8(b)',
           title: 'Cost function',
           type: 'calc',
@@ -332,6 +341,7 @@ export default {
         },
         {
           id: 'pf-q8c',
+          method: 'monopoly-optimum',
           label: '8(c)',
           title: 'Monopoly output and price',
           type: 'calc',
@@ -348,6 +358,7 @@ export default {
         },
         {
           id: 'pf-q8d',
+          method: 'producer-surplus',
           label: '8(d)',
           title: 'Producer surplus',
           type: 'calc',
@@ -380,6 +391,7 @@ export default {
       parts: [
         {
           id: 'pf-q9a',
+          method: 'cournot-profit-functions',
           label: '9(a)',
           title: 'Profit functions',
           type: 'calc',
@@ -396,6 +408,7 @@ export default {
         },
         {
           id: 'pf-q9b',
+          method: 'cournot-best-response',
           label: '9(b)',
           title: 'Best responses',
           type: 'calc',
@@ -412,6 +425,7 @@ export default {
         },
         {
           id: 'pf-q9c',
+          method: 'cournot-equilibrium',
           label: '9(c)',
           title: 'Cournot-Nash quantities',
           type: 'calc',
@@ -430,6 +444,7 @@ export default {
         },
         {
           id: 'pf-q9d',
+          method: 'price-and-profits',
           label: '9(d)',
           title: 'Equilibrium price',
           type: 'calc',
@@ -450,6 +465,7 @@ export default {
       parts: [
         {
           id: 'pf-q10a',
+          method: 'cournot-profit-functions',
           label: '10(a)',
           title: 'Profit functions',
           type: 'calc',
@@ -465,6 +481,7 @@ export default {
         },
         {
           id: 'pf-q10b',
+          method: 'cournot-best-response',
           label: '10(b)',
           title: 'Best responses',
           type: 'calc',
@@ -479,6 +496,7 @@ export default {
         },
         {
           id: 'pf-q10c',
+          method: 'cournot-equilibrium',
           label: '10(c)',
           title: 'Cournot-Nash quantities',
           type: 'calc',
@@ -505,6 +523,7 @@ export default {
         },
         {
           id: 'pf-q10d',
+          method: 'price-and-profits',
           label: '10(d)',
           title: 'Market price',
           type: 'calc',

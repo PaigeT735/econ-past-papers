@@ -23,6 +23,7 @@ export default {
       parts: [
         {
           id: 'p2-q1a',
+          method: 'perfect-complements',
           label: '1(a)',
           title: 'Optimal bundle',
           type: 'calc',
@@ -43,6 +44,7 @@ export default {
         },
         {
           id: 'p2-q1b',
+          method: 'perfect-complements',
           label: '1(b)',
           title: 'New bundle after a price rise',
           type: 'calc',
@@ -68,6 +70,7 @@ export default {
         },
         {
           id: 'p2-q1c',
+          method: 'compensating-income',
           label: '1(c)',
           title: 'Compensating income',
           type: 'calc',
@@ -100,6 +103,7 @@ export default {
       parts: [
         {
           id: 'p2-q2a',
+          method: 'cobb-douglas-demand',
           label: '2(a)',
           title: 'Optimal bundle',
           type: 'calc',
@@ -129,6 +133,7 @@ export default {
         },
         {
           id: 'p2-q2b',
+          method: 'cobb-douglas-demand',
           label: '2(b)',
           title: 'Price of good 1 doubles',
           type: 'calc',
@@ -145,6 +150,7 @@ export default {
         },
         {
           id: 'p2-q2c',
+          method: 'explain-cobb-douglas-cross',
           label: '2(c)',
           title: 'Why good 2 did not change',
           type: 'essay',
@@ -183,6 +189,7 @@ export default {
       parts: [
         {
           id: 'p2-q3a',
+          method: 'dominant-strategies',
           label: '3(a)',
           title: 'Dominant strategies',
           type: 'essay',
@@ -200,6 +207,7 @@ export default {
         },
         {
           id: 'p2-q3b',
+          method: 'nash-matrix',
           label: '3(b)',
           title: 'Nash equilibrium',
           type: 'essay',
@@ -216,6 +224,7 @@ export default {
         },
         {
           id: 'p2-q3c',
+          method: 'explain-nash',
           label: '3(c)',
           title: 'Why the equilibrium is inefficient',
           type: 'essay',
@@ -254,6 +263,7 @@ export default {
       parts: [
         {
           id: 'p2-q4a',
+          method: 'conditional-demands',
           label: '4(a)',
           title: 'Conditional input demands',
           type: 'calc',
@@ -275,6 +285,7 @@ export default {
         },
         {
           id: 'p2-q4b',
+          method: 'cost-function',
           label: '4(b)',
           title: 'Cost and marginal cost',
           type: 'calc',
@@ -290,6 +301,7 @@ export default {
         },
         {
           id: 'p2-q4c',
+          method: 'returns-to-scale',
           label: '4(c)',
           title: 'Returns to scale',
           type: 'essay',
@@ -327,6 +339,7 @@ export default {
       parts: [
         {
           id: 'p2-q5a',
+          method: 'monopoly-optimum',
           label: '5(a)',
           title: 'Output, price and profit',
           type: 'calc',
@@ -347,6 +360,7 @@ export default {
         },
         {
           id: 'p2-q5b',
+          method: 'monopoly-dwl',
           label: '5(b)',
           title: 'Competitive output and deadweight loss',
           type: 'calc',
@@ -364,6 +378,7 @@ export default {
         },
         {
           id: 'p2-q5c',
+          method: 'lerner-elasticity',
           label: '5(c)',
           title: 'Elasticity and the Lerner index',
           type: 'calc',
@@ -398,6 +413,7 @@ export default {
       parts: [
         {
           id: 'p2-q6a',
+          method: ['conditional-demands', 'cost-function'],
           label: '6(a)',
           title: 'Input demands and variable cost',
           type: 'calc',
@@ -417,6 +433,7 @@ export default {
         },
         {
           id: 'p2-q6b',
+          method: 'monopoly-optimum',
           label: '6(b)',
           title: 'Monopoly output and price',
           type: 'calc',
@@ -433,6 +450,7 @@ export default {
         },
         {
           id: 'p2-q6c',
+          method: 'producer-surplus',
           label: '6(c)',
           title: 'Profit vs producer surplus',
           type: 'calc',
@@ -459,6 +477,7 @@ export default {
         },
         {
           id: 'p2-q6d',
+          method: ['consumer-surplus', 'monopoly-dwl'],
           label: '6(d)',
           title: 'Consumer surplus and deadweight loss',
           type: 'calc',
@@ -490,6 +509,7 @@ export default {
       parts: [
         {
           id: 'p2-q7a',
+          method: 'cournot-best-response',
           label: '7(a)',
           title: 'Best responses',
           type: 'calc',
@@ -507,6 +527,7 @@ export default {
         },
         {
           id: 'p2-q7b',
+          method: 'cournot-equilibrium',
           label: '7(b)',
           title: 'Equilibrium quantities and price',
           type: 'calc',
@@ -533,6 +554,7 @@ export default {
         },
         {
           id: 'p2-q7c',
+          method: 'price-and-profits',
           label: '7(c)',
           title: 'Profits',
           type: 'calc',
@@ -555,6 +577,7 @@ export default {
       parts: [
         {
           id: 'p2-q8a',
+          method: 'cournot-n-firms',
           label: '8(a)',
           title: 'Three-firm Cournot equilibrium',
           type: 'calc',
@@ -574,6 +597,7 @@ export default {
         },
         {
           id: 'p2-q8b',
+          method: 'cartel',
           label: '8(b)',
           title: 'Collusion',
           type: 'calc',
@@ -591,6 +615,7 @@ export default {
         },
         {
           id: 'p2-q8c',
+          method: 'cartel-cheating',
           label: '8(c)',
           title: 'Cheating on the cartel',
           type: 'calc',
@@ -625,6 +650,7 @@ export default {
       parts: [
         {
           id: 'p2-q9a',
+          method: 'stackelberg-follower',
           label: '9(a)',
           title: 'Follower’s best response',
           type: 'calc',
@@ -640,6 +666,7 @@ export default {
         },
         {
           id: 'p2-q9b',
+          method: 'stackelberg-leader',
           label: '9(b)',
           title: 'Leader’s optimal quantity',
           type: 'calc',
@@ -657,6 +684,7 @@ export default {
         },
         {
           id: 'p2-q9c',
+          method: 'price-and-profits',
           label: '9(c)',
           title: 'Price and profits',
           type: 'calc',
@@ -672,6 +700,7 @@ export default {
         },
         {
           id: 'p2-q9d',
+          method: 'compare-cournot-stackelberg',
           label: '9(d)',
           title: 'Comparison with Cournot',
           type: 'essay',
@@ -714,6 +743,7 @@ export default {
       parts: [
         {
           id: 'p2-q10a',
+          method: 'monopoly-optimum',
           label: '10(a)',
           title: 'Before the tax',
           type: 'calc',
@@ -729,6 +759,7 @@ export default {
         },
         {
           id: 'p2-q10b',
+          method: 'monopoly-tax',
           label: '10(b)',
           title: 'After the tax',
           type: 'calc',
@@ -745,6 +776,7 @@ export default {
         },
         {
           id: 'p2-q10c',
+          method: 'tax-incidence',
           label: '10(c)',
           title: 'Who pays the tax?',
           type: 'calc',

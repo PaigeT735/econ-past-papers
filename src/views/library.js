@@ -103,12 +103,26 @@ export default {
         setCardOpen(card, card.dataset.open !== 'true');
         return;
       }
+      const tab = e.target.closest('[data-atab]');
+      if (tab) {
+        selectAnswerTab(tab);
+        return;
+      }
       const copy = e.target.closest('[data-copy-link]');
       if (copy) {
         const url = `${location.origin}${location.pathname}${copy.dataset.copyLink}`;
         if (navigator.clipboard?.writeText) navigator.clipboard.writeText(url).then(() => ctx.toast('Link copied'), () => ctx.toast(url));
         else ctx.toast(url);
       }
+    });
+    root.addEventListener('keydown', (e) => {
+      const tab = e.target.closest('[data-atab]');
+      if (!tab || !['ArrowLeft', 'ArrowRight'].includes(e.key)) return;
+      const tabs = [...tab.parentElement.querySelectorAll('[data-atab]')];
+      const next = tabs[(tabs.indexOf(tab) + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+      selectAnswerTab(next);
+      next.focus();
+      e.preventDefault();
     });
     focusAnchor(root, resolveAnchor(p.section, p.anchor), { smooth: false });
   },
@@ -119,3 +133,16 @@ export default {
     else window.scrollTo({ top: 0, behavior: 'smooth' });
   },
 };
+
+/** Switch a question card between its Solution and Standard steps panels. */
+function selectAnswerTab(tab) {
+  const card = tab.closest('.qcard');
+  if (!card) return;
+  const which = tab.dataset.atab;
+  card.querySelectorAll('[data-atab]').forEach((b) => {
+    const on = b.dataset.atab === which;
+    b.setAttribute('aria-selected', String(on));
+    b.tabIndex = on ? 0 : -1;
+  });
+  card.querySelectorAll('[data-apanel]').forEach((p) => (p.hidden = p.dataset.apanel !== which));
+}

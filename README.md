@@ -30,6 +30,7 @@ Live at `https://paiget735.github.io/econ-past-papers/`.
 2. Change `id`, `title`, `short` (the tab label) and `summary`, then replace the questions.
    - Each part needs a unique `id`, a `label` (`1`, `8(a)`…), `type` (`essay` or `calc`) and the `prompt`. `marks` is optional.
    - Optional: `title`, `approach`, `given`, `working`, `result`, `answer` (blocks with `heading`, `paras`, `formula`, `list`, `table`), `tips`, `topics`, `formulas`.
+   - **Required:** `method`, the id of a standard method in `src/content/methods.js` (or an array of ids). It fills the **Standard steps** tab: the general recipe for that type of question. Reuse an existing method where one fits. Otherwise add a new one there (title, when, steps, plus optional shortcut, check and traps).
    - Real exams: drop `practice: true` and mark Question 1 `compulsory: true` if it is.
 3. Import it in `src/content/index.js` and add it to `PAPERS` (newest first).
 4. `npm install` once, then `npm run check`.

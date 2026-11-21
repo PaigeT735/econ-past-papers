@@ -6,6 +6,7 @@ import { rich, tex, escapeHtml } from '../lib/rich.js';
 import { icons } from '../lib/icons.js';
 import { cardIndex } from '../content/index.js';
 import { topicById } from '../content/topics.js';
+import { methodById } from '../content/methods.js';
 
 const label = (text, hint = '') => `<h4 class="block__label">${text}${hint ? `<span class="block__hint">${hint}</span>` : ''}</h4>`;
 const paras = (v) => [].concat(v ?? []).map((p) => `<p>${rich(p)}</p>`).join('');
@@ -67,6 +68,33 @@ function workingBlock(steps, result) {
   </section>`;
 }
 
+/**
+ * Standard method: the general recipe for this type of question (letters, not numbers).
+ * Parts reference one or more methods from content/methods.js by id.
+ */
+function methodPanel(ids) {
+  const methods = [].concat(ids ?? []).map((id) => methodById.get(id)).filter(Boolean);
+  if (!methods.length) return '<p class="smethod__empty">No standard method for this question yet.</p>';
+  return methods
+    .map(
+      (m, i) => `<section class="smethod">
+      <div class="smethod__head">
+        <span class="smethod__kicker">${methods.length > 1 ? `Method ${i + 1} of ${methods.length}` : 'Standard method'}</span>
+        <h4 class="smethod__title">${rich(m.title)}</h4>
+      </div>
+      <div class="smethod__when"><span class="smethod__tag">Use it when</span><span>${rich(m.when)}</span></div>
+      ${m.setup ? `<div class="smethod__setup"><span class="smethod__tag">Notation</span><span>${rich(m.setup)}</span></div>` : ''}
+      <div class="example smethod__steps">
+        <ol class="example__steps">${m.steps.map((s) => workingStep({ title: s.title, why: s.how, math: s.math })).join('')}</ol>
+        ${m.shortcut ? `<div class="example__answer smethod__shortcut"><span class="example__answer-label">Shortcut</span><span class="smethod__shortcut-math">${tex(m.shortcut, true)}</span></div>` : ''}
+      </div>
+      ${m.check ? `<div class="smethod__check"><span class="smethod__tag">Sense check</span><span>${rich(m.check)}</span></div>` : ''}
+      ${m.traps?.length ? `<div class="smethod__traps"><span class="smethod__tag">Watch out</span>${list(m.traps)}</div>` : ''}
+    </section>`
+    )
+    .join('');
+}
+
 function formulaLinks(ids) {
   const links = (ids ?? [])
     .map((id) => cardIndex.get(id))
@@ -88,7 +116,7 @@ export function renderQuestionPart(part, question, section) {
     part.type === 'calc' ? '<span class="badge">Calculation</span>' : '',
   ].join('');
 
-  const hints = part.type === 'calc' ? 'approach · working · answer · traps' : 'approach · model answer · exam tips';
+  const hints = 'solution · standard steps';
 
   return `
   <article class="fcard qcard" id="${part.id}" data-card="${part.id}" data-type="${part.type}" data-open="false" aria-labelledby="${part.id}-title">
@@ -108,11 +136,20 @@ export function renderQuestionPart(part, question, section) {
     <div class="fcard__body" id="${part.id}-body">
       <div class="fcard__inner" inert>
         <div class="fcard__content">
+          <div class="atabs" role="tablist" aria-label="Answer views">
+            <button class="atabs__tab" type="button" role="tab" id="${part.id}-tab-solution" aria-controls="${part.id}-panel-solution" aria-selected="true" data-atab="solution">Solution</button>
+            <button class="atabs__tab" type="button" role="tab" id="${part.id}-tab-method" aria-controls="${part.id}-panel-method" aria-selected="false" tabindex="-1" data-atab="method">Standard steps</button>
+          </div>
+          <div class="apanel" role="tabpanel" id="${part.id}-panel-solution" aria-labelledby="${part.id}-tab-solution" data-apanel="solution">
           ${part.approach ? `<section class="block block--when">${label('How to approach it')}<div class="block__lead">${paras(part.approach)}</div></section>` : ''}
           ${givenBlock(part.given)}
           ${workingBlock(part.working, part.result)}
           ${(part.answer ?? []).map(answerBlock).join('')}
           ${part.tips?.length ? `<section class="block block--clues">${label('Exam tips')}<div class="callout">${list(part.tips)}</div></section>` : ''}
+          </div>
+          <div class="apanel" role="tabpanel" id="${part.id}-panel-method" aria-labelledby="${part.id}-tab-method" data-apanel="method" hidden>
+            ${methodPanel(part.method)}
+          </div>
           ${formulaLinks(part.formulas)}
         </div>
       </div>
