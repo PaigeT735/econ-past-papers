@@ -4,10 +4,11 @@
  * and add it to PAPERS below, newest first.
  */
 import practiceFinal from './papers/practice-final.js';
+import practice2 from './papers/practice-2.js';
 import formulaSheet from './formula-sheet.js';
 import { TOPICS } from './topics.js';
 
-export const PAPERS = [practiceFinal];
+export const PAPERS = [practiceFinal, practice2];
 export const FORMULA_SHEET = formulaSheet;
 
 /** Pages in tab order: the formula sheet, then each exam (newest first). */

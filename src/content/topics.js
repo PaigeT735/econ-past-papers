@@ -7,6 +7,8 @@ export const TOPICS = [
   { id: 'monopoly', label: 'Monopoly' },
   { id: 'welfare', label: 'Surplus & deadweight loss' },
   { id: 'cournot', label: 'Cournot oligopoly' },
+  { id: 'collusion-stackelberg', label: 'Collusion & Stackelberg' },
+  { id: 'tax-incidence', label: 'Taxes & incidence' },
   { id: 'game-theory', label: 'Game theory & Nash equilibrium' },
 ];
 

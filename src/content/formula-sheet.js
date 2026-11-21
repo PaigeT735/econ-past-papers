@@ -12,17 +12,18 @@ import monopoly from './library/05-monopoly.js';
 import oligopoly from './library/06-oligopoly.js';
 import games from './library/07-game-theory.js';
 import welfare from './library/08-welfare.js';
+import general from './library/09-general.js';
 
 const PICK = [
   'budget-constraint', 'mrs', 'tangency-condition', 'cobb-douglas-utility', 'perfect-complements', 'perfect-substitutes',
-  'trs', 'cost-min-condition', 'conditional-demands', 'total-cost-function', 'marginal-cost',
-  'competitive-market-outcome', 'marginal-revenue', 'mr-equals-mc', 'monopoly-price', 'monopoly-profit', 'monopoly-shortcuts',
+  'trs', 'cost-min-condition', 'conditional-demands', 'returns-to-scale', 'total-cost-function', 'fixed-variable-cost', 'marginal-cost',
+  'competitive-market-outcome', 'marginal-revenue', 'mr-equals-mc', 'monopoly-price', 'monopoly-profit', 'monopoly-shortcuts', 'lerner-index', 'elasticity',
   'producer-surplus', 'consumer-surplus', 'deadweight-loss',
-  'cournot-profit', 'best-response-cournot', 'cournot-symmetric', 'cournot-asymmetric',
-  'nash-equilibrium', 'pareto-efficiency', 'prisoners-dilemma',
+  'cournot-profit', 'best-response-cournot', 'cournot-symmetric', 'cournot-asymmetric', 'cournot-n-firms', 'cartel', 'stackelberg',
+  'nash-equilibrium', 'dominant-strategy', 'pareto-efficiency', 'prisoners-dilemma',
 ];
 
-const all = new Map([consumer, production, costs, competition, monopoly, oligopoly, games, welfare].flatMap((s) => s.cards.map((c) => [c.id, c])));
+const all = new Map([consumer, production, costs, competition, monopoly, oligopoly, games, welfare, general].flatMap((s) => s.cards.map((c) => [c.id, c])));
 const picked = new Set(PICK);
 const cards = PICK.map((id) => {
   const card = all.get(id);
