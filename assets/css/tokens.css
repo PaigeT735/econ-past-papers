@@ -15,9 +15,9 @@
   color-scheme: light;
 
   /* Base: pale sky, layered with soft colour pools (see base.css) */
-  --bg: #eef3f9;
-  --bg-raise: #f6f9fd;
-  --bg-sunken: #e4ecf6;
+  --bg: #e5eaf0;
+  --bg-raise: #edf1f5;
+  --bg-sunken: #dbe2ea;
 
   /* Ink: deep navy rather than black */
   --ink-1: #14243d;
@@ -26,18 +26,18 @@
   --ink-4: #8395ad;
 
   /* Hairlines */
-  --line-1: rgba(32, 70, 128, 0.08);
-  --line-2: rgba(32, 70, 128, 0.13);
+  --line-1: rgba(32, 60, 100, 0.09);
+  --line-2: rgba(32, 60, 100, 0.14);
   --line-3: rgba(32, 70, 128, 0.22);
 
   /* Frosted glass */
-  --glass-chrome: rgba(247, 250, 255, 0.62);
-  --glass-panel: linear-gradient(160deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.5) 100%);
-  --glass-panel-solid: #f8fbff;
-  --glass-edge: rgba(255, 255, 255, 0.8);
-  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --glass-chrome: rgba(232, 237, 243, 0.72);
+  --glass-panel: linear-gradient(160deg, rgba(242, 245, 249, 0.66) 0%, rgba(236, 240, 245, 0.46) 100%);
+  --glass-panel-solid: #edf1f5;
+  --glass-edge: rgba(255, 255, 255, 0.45);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.5);
   --glass-shadow: 0 1px 2px rgba(28, 58, 104, 0.05), 0 12px 32px -18px rgba(28, 58, 104, 0.28);
-  --inset: rgba(255, 255, 255, 0.78);
+  --inset: rgba(240, 243, 247, 0.72);
   --blur: saturate(170%) blur(20px);
 
   /* Section accents: calm, ink-strength so they read on light glass */
@@ -91,17 +91,17 @@
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 
   /* Theme plumbing (overridden in dark mode) */
-  --glass-rgb: 255, 255, 255;
-  --glass-k: 1;
+  --glass-rgb: 240, 243, 247;
+  --glass-k: 0.9;
   --shadow-rgb: 28, 58, 104;
   --shadow-k: 1;
-  --edge-hi: #ffffff;
-  --pressed: #ffffff;
-  --card-open: linear-gradient(160deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.64));
-  --drawer-bg: rgba(246, 250, 255, 0.9);
-  --popover: rgba(248, 251, 255, 0.96);
-  --thead-bg: rgba(236, 243, 252, 0.7);
-  --sticky-th: #f3f7fc;
+  --edge-hi: rgba(255, 255, 255, 0.55);
+  --pressed: #f0f3f7;
+  --card-open: linear-gradient(160deg, rgba(242, 245, 249, 0.8), rgba(236, 240, 245, 0.6));
+  --drawer-bg: rgba(234, 239, 244, 0.94);
+  --popover: rgba(238, 242, 246, 0.97);
+  --thead-bg: rgba(220, 228, 238, 0.6);
+  --sticky-th: #e6ebf1;
   --scrim: rgba(20, 40, 70, 0.22);
   --thumb: rgba(40, 80, 140, 0.18);
   --thumb-hover: rgba(40, 80, 140, 0.3);
@@ -110,16 +110,16 @@
   --brand-on: #ffffff;
   --brand-ink: #1f4f8f;
   --highlight: rgba(140, 190, 245, 0.42);
-  --mark-bg: rgba(255, 255, 255, 0.75);
+  --mark-bg: rgba(240, 243, 247, 0.7);
   --mark-line-1: #2f6db3;
   --mark-line-2: #7fb6c9;
   --mark-dot: #ffffff;
   --atmos:
-    radial-gradient(48vw 46vh at 6% 2%, rgba(140, 186, 240, 0.55), transparent 70%),
-    radial-gradient(42vw 44vh at 96% 12%, rgba(196, 184, 250, 0.42), transparent 70%),
-    radial-gradient(50vw 48vh at 78% 98%, rgba(150, 222, 214, 0.42), transparent 70%),
-    radial-gradient(36vw 36vh at 18% 88%, rgba(255, 214, 196, 0.32), transparent 70%),
-    linear-gradient(180deg, #f3f7fc 0%, #e9f0f8 100%);
+    radial-gradient(48vw 46vh at 6% 2%, rgba(128, 166, 214, 0.38), transparent 70%),
+    radial-gradient(42vw 44vh at 96% 12%, rgba(170, 160, 222, 0.28), transparent 70%),
+    radial-gradient(50vw 48vh at 78% 98%, rgba(132, 192, 186, 0.3), transparent 70%),
+    radial-gradient(36vw 36vh at 18% 88%, rgba(222, 188, 172, 0.22), transparent 70%),
+    linear-gradient(180deg, #e7ecf2 0%, #dde4ec 100%);
 }
 
 /* ---------- Dark theme: deep night-blue glass ---------- */
