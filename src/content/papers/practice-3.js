@@ -11,9 +11,10 @@ const gameMatrix = t`$$\begin{array}{c|ccc} & \text{L} & \text{C} & \text{R} \\ 
 export default {
   kind: 'paper',
   practice: true,
+  group: 'exams',
   id: 'practice-3',
   title: 'Practice Paper 3',
-  short: 'Practice 3',
+  short: 'Paper 3',
   accent: 'welfare',
   summary: t`Ten questions, slightly harder than Paper 2. Several mix calculation with explanation, so write out your reasoning in words where asked. In Slutsky questions, compensate income so the **original bundle is just affordable**, unless told to use Hicks.`,
   meta: [['Module', 'ECU22011 Intermediate Economics A (Micro)'], ['Set', 'Practice Paper 3 with solutions']],

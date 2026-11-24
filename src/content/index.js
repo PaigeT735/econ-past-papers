@@ -6,10 +6,19 @@
 import practiceFinal from './papers/practice-final.js';
 import practice2 from './papers/practice-2.js';
 import practice3 from './papers/practice-3.js';
+import ps1 from './papers/ps-1.js';
+import ps2 from './papers/ps-2.js';
+import ps3 from './papers/ps-3.js';
+import ps4 from './papers/ps-4.js';
+import ps5 from './papers/ps-5.js';
+import ws1 from './papers/ws-1.js';
+import ws2 from './papers/ws-2.js';
+import ws3 from './papers/ws-3.js';
 import formulaSheet from './formula-sheet.js';
 import { TOPICS } from './topics.js';
 
-export const PAPERS = [practiceFinal, practice2, practice3];
+/** Tab order: practice papers, then the problem sets, then the harder worksheets. */
+export const PAPERS = [practiceFinal, practice2, practice3, ps1, ps2, ps3, ps4, ps5, ws1, ws2, ws3];
 export const FORMULA_SHEET = formulaSheet;
 
 /** Pages in tab order: the formula sheet, then each exam (newest first). */

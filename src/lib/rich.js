@@ -3,6 +3,7 @@
  *   $...$    inline maths (KaTeX)
  *   $$...$$  display maths (KaTeX)
  *   **...**  bold
+ *   \$       a literal dollar sign
  * Everything else is HTML-escaped.
  */
 import { katexOptions, prepTex } from './katex-options.js';
@@ -42,6 +43,12 @@ export function segments(str) {
   let buf = '';
   const s = String(str ?? '');
   while (i < s.length) {
+    // \$ is a literal dollar sign (currency), not a maths delimiter
+    if (s[i] === '\\' && s[i + 1] === '$') {
+      buf += '$';
+      i += 2;
+      continue;
+    }
     if (s[i] === '$') {
       const isDisplay = s[i + 1] === '$';
       const open = isDisplay ? 2 : 1;

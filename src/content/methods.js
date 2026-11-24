@@ -1,4 +1,5 @@
 import { t } from '../lib/tag.js';
+import PS_METHODS from './methods-ps.js';
 
 /**
  * Standard methods: the same recipe for every question of a given type,
@@ -16,7 +17,7 @@ import { t } from '../lib/tag.js';
  *   check      optional sense check (rich text)
  *   traps      optional list of common mistakes (rich text)
  */
-export const METHODS = [
+const BASE_METHODS = [
   /* ------------------------------------------------------------ Consumer choice */
   {
     id: 'perfect-complements',
@@ -631,5 +632,7 @@ export const METHODS = [
     ],
   },
 ];
+
+export const METHODS = [...BASE_METHODS, ...PS_METHODS];
 
 export const methodById = new Map(METHODS.map((m) => [m.id, m]));

@@ -7,9 +7,10 @@ import { t } from '../../lib/tag.js';
 export default {
   kind: 'paper',
   practice: true,
+  group: 'exams',
   id: 'practice-final',
   title: 'Final Practice Questions',
-  short: 'Practice Final',
+  short: 'Final',
   accent: 'production',
   summary: t`ECU22011 final practice questions: ten questions on consumer choice, cost minimisation, monopoly, deadweight loss, Cournot and Nash equilibrium.`,
   meta: [['Module', 'ECU22011 Intermediate Economics A (Micro)'], ['Set', 'Final practice questions with solutions']],

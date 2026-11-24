@@ -9,9 +9,10 @@ const adMatrix = t`$$\begin{array}{c|cc} & \text{Firm 2: A} & \text{Firm 2: N} \
 export default {
   kind: 'paper',
   practice: true,
+  group: 'exams',
   id: 'practice-2',
   title: 'Practice Paper 2',
-  short: 'Practice 2',
+  short: 'Paper 2',
   accent: 'oligopoly',
   summary: t`Ten questions, slightly harder than the first set: price changes and compensation, Cobb-Douglas demand, a prisoners' dilemma, returns to scale, monopoly with rising costs and fixed costs, asymmetric and three-firm Cournot, collusion, Stackelberg, and a tax on a monopolist.`,
   meta: [['Module', 'ECU22011 Intermediate Economics A (Micro)'], ['Set', 'Practice Paper 2 with solutions']],

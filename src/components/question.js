@@ -26,6 +26,13 @@ function table(tb) {
   return `<div class="ctable__scroll mini-table"><table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
 }
 
+/** Graphs drawn with src/lib/plot.js: { svg, caption } or { figures: [{ svg, caption }] } */
+function figures(b) {
+  const figs = b.figures ?? (b.svg ? [{ svg: b.svg, caption: b.caption }] : []);
+  if (!figs.length) return '';
+  return `<div class="answer-figs">${figs.map((f) => `<figure class="answer-fig">${f.svg}${f.caption ? `<figcaption>${rich(f.caption)}</figcaption>` : ''}</figure>`).join('')}</div>`;
+}
+
 /** One block of a model answer: heading + any of paras / formula / list / table. */
 function answerBlock(b) {
   return `<section class="block block--answer">
@@ -34,6 +41,7 @@ function answerBlock(b) {
     ${b.formula ? `<div class="answer-formula">${tex(b.formula, true)}</div>` : ''}
     ${b.list ? list(b.list) : ''}
     ${b.table ? table(b.table) : ''}
+    ${figures(b)}
   </section>`;
 }
 
@@ -125,7 +133,7 @@ export function renderQuestionPart(part, question, section) {
         <span class="fcard__code">${escapeHtml(section.short)}</span>${badges}
         <button class="fcard__link" type="button" data-copy-link="#/papers/${section.id}/${part.id}" aria-label="Copy link to question ${escapeHtml(part.label)}">${icons.link}Link</button>
       </div>
-      <h3 class="fcard__title" id="${part.id}-title">Question ${escapeHtml(part.label)}${part.title ? ` · ${escapeHtml(part.title)}` : ''}</h3>
+      <h3 class="fcard__title" id="${part.id}-title">Question ${escapeHtml(part.label)}${part.title ? ` · ${rich(part.title)}` : ''}</h3>
       ${topics ? `<div class="qcard__topics">${topics}</div>` : ''}
     </div>
     <div class="fcard__formula qcard__prompt">${rich(part.prompt)}</div>

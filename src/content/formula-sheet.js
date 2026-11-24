@@ -16,10 +16,12 @@ import general from './library/09-general.js';
 import extraCards from './extra-cards.js';
 
 const PICK = [
-  'budget-constraint', 'mrs', 'tangency-condition', 'cobb-douglas-utility', 'perfect-complements', 'perfect-substitutes',
+  'preference-axioms', 'monotonic-transformation', 'marginal-utility',
+  'budget-constraint', 'mrs', 'tangency-condition', 'lagrangian', 'cobb-douglas-utility', 'perfect-complements', 'perfect-substitutes', 'quasilinear',
+  'intertemporal-budget', 'labour-leisure',
   'slutsky-decomposition', 'hicks-decomposition', 'slutsky-equation', 'giffen-good',
-  'trs', 'cost-min-condition', 'conditional-demands', 'returns-to-scale', 'total-cost-function', 'fixed-variable-cost', 'marginal-cost', 'average-costs',
-  'competitive-market-outcome', 'marginal-revenue', 'mr-equals-mc', 'monopoly-price', 'monopoly-profit', 'monopoly-shortcuts', 'lerner-index', 'elasticity', 'natural-monopoly', 'price-cap',
+  'marginal-product', 'trs', 'cobb-douglas-production', 'linear-production', 'leontief-production', 'profit-max-inputs', 'cost-min-condition', 'conditional-demands', 'returns-to-scale', 'total-cost-function', 'fixed-variable-cost', 'marginal-cost', 'average-costs',
+  'profit-max-competitive', 'shutdown', 'firm-supply', 'long-run-competitive', 'competitive-market-outcome', 'price-controls', 'marginal-revenue', 'mr-equals-mc', 'monopoly-price', 'monopoly-profit', 'monopoly-shortcuts', 'lerner-index', 'elasticity', 'natural-monopoly', 'price-cap',
   'producer-surplus', 'consumer-surplus', 'total-surplus', 'deadweight-loss',
   'cournot-profit', 'best-response-cournot', 'cournot-symmetric', 'cournot-asymmetric', 'cournot-n-firms', 'free-entry-cournot', 'cartel', 'stackelberg', 'bertrand',
   'nash-equilibrium', 'dominant-strategy', 'iterated-dominance', 'pareto-efficiency', 'prisoners-dilemma',
@@ -38,7 +40,7 @@ export default {
   kind: 'formulas',
   id: 'formula-sheet',
   title: 'Formula Sheet',
-  short: 'Formula Sheet',
+  short: 'Formulas',
   accent: 'consumer',
   summary: t`Every formula the papers have needed so far, with when to use it, the usual traps and a short worked example.`,
   cards,

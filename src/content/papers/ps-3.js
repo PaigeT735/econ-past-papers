@@ -1,0 +1,202 @@
+import { t } from '../../lib/tag.js';
+import { plot } from '../../lib/plot.js';
+
+/**
+ * ECU22011 Problem Set 3: Slutsky, returns to scale, marginal products, TRS,
+ * isoquants, and workers vs robots.
+ */
+export default {
+  kind: 'paper',
+  practice: true,
+  group: 'psets',
+  id: 'ps-3',
+  title: 'Problem Set 3',
+  short: 'PS 3',
+  accent: 'production',
+  summary: t`A **Slutsky** decomposition (the same question as PS 2 Q6), then production: **returns to scale** for Cobb-Douglas, **marginal products**, the **TRS** and **isoquants**, short-run returns, and whether **workers and robots** are substitutes or complements. Total 100 pts.`,
+  meta: [['Module', 'ECU22011 Intermediate Economics A (Micro)'], ['Set', 'Problem Set 3 with solutions']],
+  questions: [
+    /* ------------------------------------------------------------------ Q1 */
+    {
+      number: 1,
+      topic: 'Slutsky decomposition (repeat of PS 2 Q6)',
+      points: 10,
+      parts: [
+        {
+          id: 'ps3-q1',
+          method: 'slutsky-given-demand',
+          label: '1',
+          title: 'Substitution and income effects for good 2',
+          type: 'calc',
+          topics: ['income-substitution'],
+          prompt: t`Demand is $x_1(p_1, p_2, m) = 5$ and $x_2(p_1, p_2, m) = \dfrac{m - 5p_1}{p_2}$, with $m = 10$. Prices change from $(1, 1)$ to $(1, 2)$. Compute the substitution and income effects for good 2.`,
+          approach: 'Three bundles: A (old prices), B (new prices, compensated income), C (new prices, old income).',
+          working: [
+            { title: 'A: original', why: '', math: t`x_2 = \frac{10 - 5(1)}{1} = 5,\qquad x_1 = 5` },
+            { title: 'C: new prices, same income', why: '', math: t`x_2' = \frac{10 - 5}{2} = 2.5` },
+            { title: 'Compensated income', why: 'Old bundle at new prices.', math: t`m' = 1 \times 5 + 2 \times 5 = 15` },
+            { title: 'B: compensated', why: '', math: t`x_2^s = \frac{15 - 5}{2} = 5` },
+            { title: 'Effects', why: '', math: [t`SE_2 = 5 - 5 = 0`, t`IE_2 = 2.5 - 5 = -2.5`, t`\text{Total} = 2.5 - 5 = -2.5\ ✓`] },
+          ],
+          result: t`$SE_2 = 0$, $IE_2 = -2.5$, total $-2.5$.`,
+          tips: ['Same question as Problem Set 2 Q6: expect it again in the exam.'],
+          formulas: ['slutsky-decomposition'],
+        },
+      ],
+    },
+    /* ------------------------------------------------------------------ Q2 */
+    {
+      number: 2,
+      topic: 'Returns to scale (Cobb-Douglas)',
+      points: 10,
+      parts: [
+        {
+          id: 'ps3-q2',
+          method: 'rts-general',
+          label: '2',
+          title: 'Three cases',
+          type: 'calc',
+          topics: ['production'],
+          prompt: t`$y = x_1^a x_2^b$. Determine the returns to scale when (i) $a + b < 1$, (ii) $a + b = 1$ and (iii) $a + b > 1$.`,
+          working: [
+            { title: 'Scale both inputs by t > 1', why: '', math: t`f(tx_1, tx_2) = (tx_1)^a(tx_2)^b = t^{a+b}\,x_1^ax_2^b = t^{a+b}\,f(x_1, x_2)` },
+            { title: 'Compare with t f(x)', why: t`Output is multiplied by $t^{a+b}$ while inputs are multiplied by $t$.`, math: t`t^{a+b}\ \text{vs}\ t` },
+            { title: '(i) a + b < 1', why: t`$t^{a+b} < t$ for $t > 1$.`, math: t`f(tx) < t\,f(x) \;\Rightarrow\; \text{decreasing returns to scale}` },
+            { title: '(ii) a + b = 1', why: '', math: t`f(tx) = t\,f(x) \;\Rightarrow\; \text{constant returns to scale}` },
+            { title: '(iii) a + b > 1', why: '', math: t`f(tx) > t\,f(x) \;\Rightarrow\; \text{increasing returns to scale}` },
+          ],
+          result: 'DRS if a + b < 1; CRS if a + b = 1; IRS if a + b > 1.',
+          formulas: ['returns-to-scale', 'cobb-douglas-production'],
+        },
+      ],
+    },
+    /* ------------------------------------------------------------------ Q3 */
+    {
+      number: 3,
+      topic: t`Production function $y = l\,k^{1/2}$`,
+      points: 40,
+      parts: [
+        {
+          id: 'ps3-q3a',
+          method: 'marginal-products',
+          label: '3(a)',
+          title: 'Marginal products',
+          type: 'calc',
+          marks: 10,
+          topics: ['production'],
+          prompt: t`Consider $y = l\,k^{1/2}$, where $l$ is labour and $k$ is capital. **(a)** Calculate the marginal products of labour and capital. Does the marginal product of each input diminish as that input increases, holding the other constant?`,
+          working: [
+            { title: 'Marginal product of labour', why: t`Treat $k$ as a constant.`, math: t`MP_l = \frac{\partial y}{\partial l} = k^{1/2}` },
+            { title: 'Does MP of labour diminish?', why: t`$MP_l$ does not contain $l$.`, math: t`\frac{\partial MP_l}{\partial l} = 0 \;\Rightarrow\; \text{constant, not diminishing}` },
+            { title: 'Marginal product of capital', why: t`Treat $l$ as a constant.`, math: t`MP_k = \frac{\partial y}{\partial k} = \tfrac12\,l\,k^{-1/2}` },
+            { title: 'Does MP of capital diminish?', why: '', math: t`\frac{\partial MP_k}{\partial k} = -\tfrac14\,l\,k^{-3/2} < 0 \;\Rightarrow\; \text{diminishing}` },
+          ],
+          result: t`$MP_l = k^{1/2}$ (constant in $l$: **not** diminishing); $MP_k = \frac{l}{2\sqrt k}$ (**diminishing** in $k$).`,
+          formulas: ['marginal-product'],
+        },
+        {
+          id: 'ps3-q3b',
+          method: 'trs-isoquant',
+          label: '3(b)',
+          title: 'TRS',
+          type: 'calc',
+          marks: 10,
+          topics: ['production'],
+          prompt: t`**(b)** Calculate the technical rate of substitution (TRS) between labour and capital.`,
+          working: [{ title: 'Ratio of marginal products', why: t`Labour on the horizontal axis, capital on the vertical axis.`, math: t`TRS = -\frac{MP_l}{MP_k} = -\frac{k^{1/2}}{\tfrac12\,l\,k^{-1/2}} = -\frac{2k}{l}` }],
+          result: t`$TRS = -\dfrac{2k}{l}$`,
+          formulas: ['trs'],
+        },
+        {
+          id: 'ps3-q3c',
+          method: 'trs-isoquant',
+          label: '3(c)',
+          title: 'Isoquant for y = 4',
+          type: 'calc',
+          marks: 10,
+          topics: ['production'],
+          prompt: t`**(c)** Find the equation of the isoquant for $y = 4$. How much capital is needed to produce $y = 4$ when $l = 2$?`,
+          working: [
+            { title: 'Set output to 4', why: '', math: [t`l\,k^{1/2} = 4 \;\Rightarrow\; k^{1/2} = \frac{4}{l}`, t`\boxed{k = \frac{16}{l^2}}`] },
+            { title: 'At l = 2', why: '', math: t`k = \frac{16}{2^2} = 4` },
+            { title: 'Check', why: '', math: t`2 \times 4^{1/2} = 2 \times 2 = 4\ ✓` },
+          ],
+          result: t`Isoquant $k = 16/l^2$; with $l = 2$ the firm needs $k = 4$.`,
+          answer: [
+            {
+              heading: 'Graph',
+              svg: plot({
+                xMax: 6, yMax: 12, xLabel: 'l', yLabel: 'k', alt: 'Isoquant k = 16 / l squared',
+                curves: [{ fn: (x) => 16 / (x * x), from: 1.1, label: 'y = 4', labelAt: [4.4, 1.6] }],
+                dots: [{ x: 2, y: 4, label: '(2, 4)' }],
+                guides: true,
+                xTicks: [2, 4], yTicks: [4, 8],
+              }),
+            },
+          ],
+          formulas: ['trs'],
+        },
+        {
+          id: 'ps3-q3d',
+          method: 'rts-general',
+          label: '3(d)',
+          title: 'Short-run returns',
+          type: 'essay',
+          marks: 10,
+          topics: ['production'],
+          prompt: t`**(d)** In the **short run**, $k$ is fixed. Determine the returns to scale of the production function. Explain.`,
+          working: [
+            { title: 'Fix capital', why: t`With $k = \bar k$, output is linear in labour.`, math: t`y = \bar k^{1/2}\,l` },
+            { title: 'Scale the variable input by t', why: '', math: t`f(tl, \bar k) = \bar k^{1/2}\,tl = t\,f(l, \bar k)` },
+          ],
+          result: 'Constant returns in the short run: doubling labour doubles output.',
+          answer: [{ heading: 'Explanation', list: [t`Only labour can change, and its exponent is 1, so output is proportional to labour (this matches $MP_l$ being constant in (a)).`, t`In the **long run**, with both inputs scaled, $1 + \tfrac12 = \tfrac32 > 1$: **increasing** returns to scale.`] }],
+          formulas: ['returns-to-scale'],
+        },
+      ],
+    },
+    /* ------------------------------------------------------------------ Q4 */
+    {
+      number: 4,
+      topic: 'Workers and robots',
+      points: 40,
+      parts: [
+        {
+          id: 'ps3-q4a',
+          method: 'input-relationship',
+          label: '4(a)',
+          title: 'Linear technology: y = l + ar',
+          type: 'essay',
+          marks: 20,
+          topics: ['production'],
+          prompt: t`A firm uses human workers ($l$) and robots ($r$) to produce goods ($y$). **(a)** Suppose $y = l + ar$. (i) Are workers and robots complements or substitutes? (ii) When technological progress makes robots more productive ($a$ increases), how does human productivity change?`,
+          working: [
+            { title: '(i) Shape of the technology', why: t`Output is a sum: one robot can replace $a$ workers at a constant rate.`, math: t`TRS = -\frac{MP_l}{MP_r} = -\frac{1}{a}\ (\text{constant})` },
+            { title: '(ii) Marginal product of labour', why: '', math: t`MP_l = \frac{\partial y}{\partial l} = 1,\qquad \frac{\partial MP_l}{\partial a} = 0` },
+          ],
+          result: t`(i) **Perfect substitutes.** (ii) Human productivity ($MP_l = 1$) **does not change**.`,
+          answer: [{ heading: 'But jobs can still be lost', paras: [t`A robot costing $p_r$ produces $a$ units, so its cost per unit of output is $p_r/a$; a worker's is $w$. Once $a$ is high enough that $p_r/a < w$, the firm replaces **all** workers with robots, even though each worker is just as productive as before.`] }],
+          formulas: ['linear-production', 'marginal-product'],
+        },
+        {
+          id: 'ps3-q4b',
+          method: 'input-relationship',
+          label: '4(b)',
+          title: 'Cobb-Douglas: y = l^½(ar)^½',
+          type: 'calc',
+          marks: 20,
+          topics: ['production'],
+          prompt: t`**(b)** Suppose $y = l^{1/2}(ar)^{1/2}$. When technological progress makes robots more productive ($a$ increases), how does human productivity change?`,
+          working: [
+            { title: 'Rewrite', why: '', math: t`y = a^{1/2}\,l^{1/2}\,r^{1/2}` },
+            { title: 'Marginal product of labour', why: '', math: t`MP_l = \tfrac12\,a^{1/2}\,l^{-1/2}\,r^{1/2} = \frac12\sqrt{\frac{ar}{l}}` },
+            { title: 'Effect of a', why: '', math: t`\frac{\partial MP_l}{\partial a} = \tfrac14\,a^{-1/2}\,l^{-1/2}\,r^{1/2} > 0` },
+          ],
+          result: t`Human productivity **rises** when robots get better: $\partial MP_l / \partial a > 0$.`,
+          answer: [{ heading: 'Interpretation', paras: [t`Here workers and robots are **complementary** in the sense that more effective robot input raises the marginal product of each worker (each worker has more "effective robots" to work with). Compare (a), where better robots leave workers' productivity unchanged.`] }],
+          formulas: ['cobb-douglas-production', 'marginal-product'],
+        },
+      ],
+    },
+  ],
+};

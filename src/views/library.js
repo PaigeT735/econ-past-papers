@@ -25,12 +25,12 @@ function renderFormulaSheet(section) {
 function renderPaper(paper) {
   const questions = paper.questions
     .map((q) => {
-      const marks = q.parts.reduce((m, p) => m + p.marks, 0);
+      const marks = q.parts.reduce((m, p) => m + (p.marks ?? 0), 0);
       return `
       <section class="qgroup" id="${paper.id}-q${q.number}">
         <div class="qgroup__head">
           <h2 class="qgroup__num">Question ${q.number}</h2>
-          <span class="qgroup__meta">${[paper.practice ? q.topic ?? '' : q.compulsory ? 'Compulsory' : 'Optional', marks ? `${marks} marks` : ''].filter(Boolean).join(' · ')}</span>
+          <span class="qgroup__meta">${[paper.practice ? (q.topic ? rich(q.topic) : '') : q.compulsory ? 'Compulsory' : 'Optional', q.points ? `${q.points} pts` : marks ? `${marks} marks` : ''].filter(Boolean).join(' · ')}</span>
         </div>
         <div class="cards">${q.parts.map((part) => renderQuestionPart(part, q, paper)).join('')}</div>
       </section>`;
