@@ -307,7 +307,7 @@ export default [
       { title: 'Operate or shut down', how: 'Operate if revenue covers variable cost. If shut, the loss is the fixed cost.', math: t`p \ge AVC(q^*) \Rightarrow \text{operate};\qquad \text{shut down: } \pi = -F` },
       { title: 'Profit or loss', how: '', math: t`\pi = p\,q^* - VC(q^*) - F` },
     ],
-    check: 'Operating is right whenever its loss is smaller than the fixed cost.',
+    check: t`**SHORT RUN → AVC:** $P \ge AVC_{\min} \Rightarrow$ operate; $P < AVC_{\min} \Rightarrow$ shut down. Operating is right whenever its loss is smaller than the fixed cost.`,
     traps: ['In the short run the fixed cost is paid either way, so it does not affect the decision to operate.'],
   },
   {
@@ -320,7 +320,8 @@ export default [
       { title: 'Decision', how: 'In the long run the firm stays only if it can at least break even.', math: t`p \ge \min AC \Rightarrow \text{stay};\quad p < \min AC \Rightarrow \text{exit}` },
       { title: 'Long-run equilibrium with free entry', how: 'Entry/exit drives price to minimum AC; each firm produces at minimum AC.', math: t`p^{LR} = \min AC,\qquad n = \frac{D(p^{LR})}{q^{\min}}` },
     ],
-    traps: ['Use minimum AC (long run), not minimum AVC (short run).'],
+    check: t`**LONG RUN → ATC:** $P \ge ATC_{\min} \Rightarrow$ stay; $P < ATC_{\min} \Rightarrow$ exit.`,
+    traps: ['Use minimum ATC (long run), not minimum AVC (short run).'],
   },
   {
     id: 'competitive-equilibrium',

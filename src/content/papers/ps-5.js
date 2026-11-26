@@ -44,6 +44,7 @@ export default {
             { title: 'Profit', why: t`Revenue $8 \times 350 = 2800$; $VC = 350 + 0.01(350)^2 = 350 + 1225 = 1575$.`, math: t`\pi = 2800 - 1575 - 3000 = -1775` },
           ],
           result: t`Produce **350 cups**, **operate**; monthly **loss of \$1,775**.`,
+          tips: [t`**SHORT RUN → AVC:** $P \ge AVC_{\min}$ ⇒ operate; $P < AVC_{\min}$ ⇒ shut down. Here $8 > 1$, so operate.`],
           answer: [{ heading: 'Why operate at a loss?', paras: [t`Shutting down would lose the whole fixed cost, \$3,000. Operating covers all variable costs and \$1,225 of the fixed cost, so the loss is smaller.`] }],
           formulas: ['shutdown', 'profit-max-competitive'],
         },
@@ -80,6 +81,7 @@ export default {
             { title: 'Check: best profit at p = 4', why: t`$4 = 1 + 0.02q \Rightarrow q = 150$.`, math: t`\pi = 600 - (150 + 225) - 3000 = -2775 < 0` },
           ],
           result: t`**Exit.** The price (\$4) is below minimum average cost (≈ \$11.95), so the shop cannot break even.`,
+          tips: [t`**LONG RUN → ATC:** $P \ge ATC_{\min}$ ⇒ stay; $P < ATC_{\min}$ ⇒ exit. Here $4 < 11.95$, so exit.`],
           answer: [
             {
               heading: 'Cost curves',
